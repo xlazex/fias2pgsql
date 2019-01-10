@@ -75,6 +75,6 @@ http://wiki.gis-lab.info/w/%D0%A4%D0%98%D0%90%D0%A1
 Комментарии
 -------------
 
-. <DB> - название бд
-. <SCHEMA>  - название схемы (по дефолту public)
-. <OPTIONS> - другие опции и флаги psql (см. документацию psql). Например: `'-hlocalhost -Uxlazex -p5432'`
+* <DB> - название бд
+* <SCHEMA>  - название схемы (по дефолту public)
+* <OPTIONS> - другие опции и флаги psql (см. документацию psql). Например: `'-hlocalhost -Uxlazex -p5432'`
