@@ -42,6 +42,10 @@ CREATE INDEX formalname_idx ON addrobj USING btree (formalname);
 CREATE INDEX offname_idx ON addrobj USING btree (offname);
 CREATE INDEX shortname_idx ON addrobj USING btree (shortname);
 CREATE INDEX shortname_aolevel_idx ON addrobj USING btree (shortname, aolevel);
+CREATE INDEX code_idx ON addrobj USING btree (code);
+CREATE INDEX plaincode_idx ON addrobj USING btree (plaincode);
+CREATE INDEX okato_idx ON addrobj USING btree (okato);
+CREATE INDEX oktmo_idx ON addrobj USING btree (oktmo);
 
 
 -- trigram indexes to speed up text searches

@@ -38,11 +38,11 @@ http://wiki.gis-lab.info/w/%D0%A4%D0%98%D0%90%D0%A1
 2. Распаковать его в директорию `_data`
 3. ВМЕСТО ПУНКТОВ 4,6,7 (если не требуется пункт 5) можно выполнить::
 
-    bash index.sh <DB>
+    bash index.sh <DB> <SCHEMA> <OPTIONS>
 
 4. Создать бд и провести начальный импорт данных::
 
-    bash import.sh <DB>
+    bash import.sh <DB> <SCHEMA> <OPTIONS>
 
 5. Если нужно, изменить настройки обновления схемы данных в schema.json и
    выполнить скрипт ``update_schema.py``. Это создаст обновлённый файл
@@ -50,11 +50,11 @@ http://wiki.gis-lab.info/w/%D0%A4%D0%98%D0%90%D0%A1
 
 6. Обновить схему данных::
 
-    psql -f update_schema.sql -d <DB>
+    PGOPTIONS=--search_path=<SCHEMA> psql -f update_schema.sql -d <DB> <OPTIONS>
 
 7. Удалить неактуальные данные и создать индексы::
 
-    psql -f indexes.sql -d <DB>
+    PGOPTIONS=--search_path=<SCHEMA> psql -f indexes.sql -d <DB> <OPTIONS>
 
 8. Проверить скорость выполнения следующих запросов::
 
@@ -71,3 +71,10 @@ http://wiki.gis-lab.info/w/%D0%A4%D0%98%D0%90%D0%A1
 
     -- поиск по части адреса
     SELECT * FROM addrobj WHERE formalname ILIKE '%Ульян%';
+
+Комментарии
+-------------
+
+. <DB> - название бд
+. <SCHEMA>  - название схемы (по дефолту public)
+. <OPTIONS> - другие опции и флаги psql (см. документацию psql). Например: `'-hlocalhost -Uxlazex -p5432'`
