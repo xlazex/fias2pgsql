@@ -1,17 +1,19 @@
 #!/bin/bash
 
 DB=$1
-echo "++++++++++++++++++ HELLO, DB = $DB"
+SCHEMA=$2
+OPTIONS=$3
+echo "++++++++++++++++++ HELLO; DB = '$DB'; SCHEMA = '$SCHEMA'"
 
 echo '++++++++++++++++++ SOCRBASE TABLE CREATED'
-pgdbf _data/SOCRBASE.DBF | iconv -f cp866 -t utf-8 | psql $DB
+pgdbf _data/SOCRBASE.DBF | iconv -f cp866 -t utf-8 | PGOPTIONS=--search_path=$SCHEMA psql $DB $OPTIONS
 
 echo '++++++++++++++++++ CHECKING ADDROBJ FILES'
 if [ -f ./_data/ADDROB01.DBF ]; then
    mv ./_data/ADDROB01.DBF ./_data/ADDROBJ.DBF
    echo '++++++++++++++++++ ADDROBJ INITIAL FILE MOVED'
 fi
-pgdbf ./_data/ADDROBJ.DBF | iconv -f cp866 -t utf-8 | psql $DB
+pgdbf ./_data/ADDROBJ.DBF | iconv -f cp866 -t utf-8 | PGOPTIONS=--search_path=$SCHEMA psql $DB $OPTIONS
 echo '++++++++++++++++++ INITIAL ADDROBJ TABLE CREATED'
 
 for FULLPATH in `find ./_data/ADDROB* -type f`
@@ -22,7 +24,7 @@ do
     if [ $TABLE = 'ADDROBJ' ]; then
       echo 'SKIPPING ADDROBJ'
     else
-      pgdbf $FULLPATH | iconv -f cp866 -t utf-8 | psql $DB
+      pgdbf $FULLPATH | iconv -f cp866 -t utf-8 | PGOPTIONS=--search_path=$SCHEMA psql $DB $OPTIONS
       echo "++++++++++++++++++ TABLE $TABLE CREATED"
 
       echo "++++++++++++++++++ INSERT $TABLE DATA INTO ADDROBJ"
