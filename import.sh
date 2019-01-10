@@ -28,7 +28,7 @@ do
       echo "++++++++++++++++++ TABLE $TABLE CREATED"
 
       echo "++++++++++++++++++ INSERT $TABLE DATA INTO ADDROBJ"
-      PGOPTIONS=--search_path=$SCHEMA psql -d $DB -c "INSERT INTO addrobj SELECT * FROM $TABLE; DROP TABLE $TABLE;"
+      PGOPTIONS=--search_path=$SCHEMA psql -d $DB -c "INSERT INTO addrobj SELECT * FROM $TABLE; DROP TABLE $TABLE;" $OPTIONS
     fi
 
 done

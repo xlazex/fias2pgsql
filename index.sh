@@ -4,7 +4,7 @@ SCHEMA=$2
 OPTIONS=$3
 
 echo '_______________________НАЧИНАЮ ИМПОРТ ИЗ ФАЙЛОВ__________________'
-bash import.sh $DB $SCHEMA $OPTIONS
+bash import.sh $DB $SCHEMA "$OPTIONS"
 
 echo '_______________________НАЧИНАЮ ОБНОВЛЕНИЕ СХЕМЫ__________________'
 PGOPTIONS=--search_path=$SCHEMA psql -f update_schema.sql -d $DB $OPTIONS
