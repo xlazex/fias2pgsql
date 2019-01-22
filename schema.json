@@ -1,5 +1,5 @@
 {
-    "process_tables": ["addrobj", "socrbase"],
+    "process_tables": ["addrobj", "socrbase", "houses"],
     "schema": {
         "actstat": {
             "convert": {
@@ -18,6 +18,8 @@
                 "parentguid",
                 "okato",
                 "oktmo",
+                "enddate",
+                "startdate",
                 "postalcode"
             ],
             "convert": {
@@ -34,6 +36,31 @@
                 "currstatus": "int",
                 "operstatus": "int",
                 "livestatus": "int"
+            }
+        },
+        "houses": {
+            "null": [
+                "terrifnsfl",
+                "terrifnsul",
+                "ifnsfl",
+                "ifnsul",
+                "normdoc",
+                "okato",
+                "oktmo",
+                "buildnum",
+                "postalcode"
+            ],
+            "convert": {
+                "aoguid": "uuid",
+                "houseguid": "uuid",
+                "houseid": "uuid",
+                "normdoc": "uuid",
+
+                "buildstatus": "int",
+                "statstatus": "int",
+                "strstatus": "int",
+                "counter": "int",
+                "divtype": "int"
             }
         },
         "centerst": {

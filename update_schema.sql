@@ -9,6 +9,107 @@ BEGIN;
     alter table socrbase drop column level_x;
 COMMIT;
 
+--============ HOUSES ============--
+
+--- update empty values for houses.terrifnsfl
+UPDATE houses SET terrifnsfl = NULL WHERE terrifnsfl = '';
+
+--- update empty values for houses.terrifnsul
+UPDATE houses SET terrifnsul = NULL WHERE terrifnsul = '';
+
+--- update empty values for houses.ifnsfl
+UPDATE houses SET ifnsfl = NULL WHERE ifnsfl = '';
+
+--- update empty values for houses.ifnsul
+UPDATE houses SET ifnsul = NULL WHERE ifnsul = '';
+
+--- update empty values for houses.normdoc
+UPDATE houses SET normdoc = NULL WHERE normdoc = '';
+
+--- update empty values for houses.okato
+UPDATE houses SET okato = NULL WHERE okato = '';
+
+--- update empty values for houses.oktmo
+UPDATE houses SET oktmo = NULL WHERE oktmo = '';
+
+--- update empty values for houses.buildnum
+UPDATE houses SET buildnum = NULL WHERE buildnum = '';
+
+--- update empty values for houses.postalcode
+UPDATE houses SET postalcode = NULL WHERE postalcode = '';
+
+-- cast column houses.aoguid to uuid
+BEGIN;
+    alter table houses rename column aoguid to aoguid_x;
+    alter table houses add column aoguid uuid;
+    update houses set aoguid = aoguid_x::uuid;
+    alter table houses drop column aoguid_x;
+COMMIT;
+
+-- cast column houses.buildstatus to int
+BEGIN;
+    alter table houses rename column buildstatus to buildstatus_x;
+    alter table houses add column buildstatus int;
+    update houses set buildstatus = buildstatus_x::int;
+    alter table houses drop column buildstatus_x;
+COMMIT;
+
+-- cast column houses.counter to int
+BEGIN;
+    alter table houses rename column counter to counter_x;
+    alter table houses add column counter int;
+    update houses set counter = counter_x::int;
+    alter table houses drop column counter_x;
+COMMIT;
+
+-- cast column houses.divtype to int
+BEGIN;
+    alter table houses rename column divtype to divtype_x;
+    alter table houses add column divtype int;
+    update houses set divtype = divtype_x::int;
+    alter table houses drop column divtype_x;
+COMMIT;
+
+-- cast column houses.houseguid to uuid
+BEGIN;
+    alter table houses rename column houseguid to houseguid_x;
+    alter table houses add column houseguid uuid;
+    update houses set houseguid = houseguid_x::uuid;
+    alter table houses drop column houseguid_x;
+COMMIT;
+
+-- cast column houses.houseid to uuid
+BEGIN;
+    alter table houses rename column houseid to houseid_x;
+    alter table houses add column houseid uuid;
+    update houses set houseid = houseid_x::uuid;
+    alter table houses drop column houseid_x;
+COMMIT;
+
+-- cast column houses.normdoc to uuid
+BEGIN;
+    alter table houses rename column normdoc to normdoc_x;
+    alter table houses add column normdoc uuid;
+    update houses set normdoc = normdoc_x::uuid;
+    alter table houses drop column normdoc_x;
+COMMIT;
+
+-- cast column houses.statstatus to int
+BEGIN;
+    alter table houses rename column statstatus to statstatus_x;
+    alter table houses add column statstatus int;
+    update houses set statstatus = statstatus_x::int;
+    alter table houses drop column statstatus_x;
+COMMIT;
+
+-- cast column houses.strstatus to int
+BEGIN;
+    alter table houses rename column strstatus to strstatus_x;
+    alter table houses add column strstatus int;
+    update houses set strstatus = strstatus_x::int;
+    alter table houses drop column strstatus_x;
+COMMIT;
+
 --============ ADDROBJ ============--
 
 --- update empty values for addrobj.nextid

@@ -3,10 +3,6 @@
 DB=$1
 SCHEMA=$2
 OPTIONS=$3
-echo "++++++++++++++++++ HELLO; DB = '$DB'; SCHEMA = '$SCHEMA'"
-
-echo '++++++++++++++++++ SOCRBASE TABLE CREATED'
-pgdbf _data/SOCRBASE.DBF | iconv -f cp866 -t utf-8 | PGOPTIONS=--search_path=$SCHEMA psql $DB $OPTIONS
 
 echo '++++++++++++++++++ CHECKING ADDROBJ FILES'
 if [ -f ./_data/ADDROB01.DBF ]; then
