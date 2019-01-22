@@ -6,12 +6,12 @@ OPTIONS=$3
 echo "_______________________HELLO; DB = '$DB'; SCHEMA = '$SCHEMA'"
 
 echo '_______________________НАЧИНАЮ ИМПОРТ SOCRBASE____________________'
-bash import_addrobj.sh $DB $SCHEMA "$OPTIONS"
-
-echo '_______________________НАЧИНАЮ ИМПОРТ ADDROBJ_____________________'
-bash import_addrobj.sh $DB $SCHEMA "$OPTIONS"
+bash import_socrbase.sh $DB $SCHEMA "$OPTIONS"
 
 echo '_______________________НАЧИНАЮ ИМПОРТ HOUSE______________________'
+bash import_house.sh $DB $SCHEMA "$OPTIONS"
+
+echo '_______________________НАЧИНАЮ ИМПОРТ ADDROBJ_____________________'
 bash import_addrobj.sh $DB $SCHEMA "$OPTIONS"
 
 echo '_______________________НАЧИНАЮ ОБНОВЛЕНИЕ СХЕМЫ__________________'
