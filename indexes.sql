@@ -57,10 +57,10 @@ CREATE INDEX addrobj_offname_trgm_idx on addrobj USING gin (offname gin_trgm_ops
 
 --========== HOUSES ==========--
 
-
--- primary key (houseguid)
+-- Not Works (NOT UNIQUE)
+-- primary key (aogid, houseguid)
 -- ALTER TABLE houses DROP CONSTRAINT houses_pkey;
-ALTER TABLE houses ADD CONSTRAINT houses_pkey PRIMARY KEY(houseguid);
+-- ALTER TABLE houses ADD CONSTRAINT houses_pkey PRIMARY KEY(aoguid, houseguid);
 
 
 -- foreign key (houses.aoguid to addrobj.aoguid)
@@ -72,9 +72,9 @@ ALTER TABLE houses
 
 
 --  create btree indexes
-CREATE UNIQUE INDEX houses_aoguid_idx ON houses USING btree (aoguid);
-CREATE UNIQUE INDEX houses_houseguid_idx ON houses USING btree (houseguid);
-REATE UNIQUE INDEX houses_houseid_idx ON houses USING btree (houseid);
-REATE UNIQUE INDEX houses_housenum_idx ON houses USING btree (housenum);
+CREATE INDEX houses_aoguid_idx ON houses USING btree (aoguid);
+CREATE INDEX houses_houseguid_idx ON houses USING btree (houseguid);
+CREATE INDEX houses_houseid_idx ON houses USING btree (houseid);
+CREATE INDEX houses_housenum_idx ON houses USING btree (housenum);
 CREATE INDEX houses_okato_idx ON houses USING btree (okato);
 CREATE INDEX houses_oktmo_idx ON houses USING btree (oktmo);
