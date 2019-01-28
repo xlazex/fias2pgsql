@@ -53,9 +53,9 @@ http://wiki.gis-lab.info/w/%D0%A4%D0%98%D0%90%D0%A1
 
     PGOPTIONS=--search_path=<SCHEMA> psql -f update_schema.sql -d <DB> <OPTIONS>
 
-7. Удалить неактуальные данные и создать индексы::
+7. Удалить неактуальные данные и создать индексы (где * - название таблиц, либо _before - для подготовительных операций, _after - для создания view и mview)::
 
-    PGOPTIONS=--search_path=<SCHEMA> psql -f indexes.sql -d <DB> <OPTIONS>
+    PGOPTIONS=--search_path=<SCHEMA> psql -f indexes_*.sql -d <DB> <OPTIONS>
 
 8. Проверить скорость выполнения следующих запросов::
 
