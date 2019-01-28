@@ -3,7 +3,7 @@ CREATE VIEW fias_view AS
     ( 
         SELECT 
             o1.aoguid AS id,
-            o1.okato AS code,
+            o1.code AS code,
             concat_ws(' '::text, o1.offname, o1.shortname) AS title,
             o1.aolevel AS level,
             o1.postalcode AS postal,
