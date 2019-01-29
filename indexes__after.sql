@@ -129,6 +129,7 @@ CREATE VIEW fias_view AS
 CREATE MATERIALIZED VIEW fias_mview AS SELECT * FROM fias_view;
 
 -- Create btree indexes for mview
+CREATE INDEX fias_mview_id_idx ON fias_mview USING btree (id);
 CREATE INDEX fias_mview_parent_id_idx ON fias_mview USING btree (parent_id);
 CREATE INDEX fias_mview_search_idx ON fias_mview USING btree (title, okato, postal, kladr);
 
