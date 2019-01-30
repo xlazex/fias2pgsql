@@ -35,6 +35,9 @@ UPDATE houses SET oktmo = NULL WHERE oktmo = '';
 --- update empty values for houses.buildnum
 UPDATE houses SET buildnum = NULL WHERE buildnum = '';
 
+--- update empty values for houses.strucnum
+UPDATE houses SET strucnum = NULL WHERE strucnum = '';
+
 --- update empty values for houses.postalcode
 UPDATE houses SET postalcode = NULL WHERE postalcode = '';
 
