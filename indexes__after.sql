@@ -10,7 +10,7 @@ CREATE VIEW fias_view AS
             o1.code AS kladr,
             o1.okato,
             o1.parentguid AS parent_id,
-            o3.okato AS parent_code,
+            o3.code AS parent_code,
             NULLIF(concat_ws(' '::text, o3.offname, o3.shortname), ''::text) AS parent_title,
             count(o2.aoguid) AS count_children,
             ( 
@@ -56,7 +56,7 @@ CREATE VIEW fias_view AS
                     houses.aoguid AS parentguid
                 FROM houses
             ) o2 ON ((o2.parentguid = o1.aoguid))
-        GROUP BY o1.aoguid, o1.okato, o1.offname, o1.shortname, o1.parentguid, o3.okato, o3.offname, o3.shortname, o1.postalcode, o1.code
+        GROUP BY o1.aoguid, o1.okato, o1.offname, o1.shortname, o1.parentguid, o3.code, o3.offname, o3.shortname, o1.postalcode, o1.code
         ORDER BY o1.offname
     )
     UNION ALL
@@ -70,7 +70,7 @@ CREATE VIEW fias_view AS
             o3.code AS kladr,
             o1.okato,
             o1.aoguid AS parent_id,
-            o3.okato AS parent_code,
+            o3.code AS parent_code,
             NULLIF(concat_ws(' '::text, o3.offname, o3.shortname), ''::text) AS parent_title,
             0 AS count_children,
             ( 
@@ -112,7 +112,7 @@ CREATE VIEW fias_view AS
             houses o1
             LEFT JOIN addrobj o3 ON ((o3.aoguid = o1.aoguid))
         )
-        GROUP BY o1.houseguid, o1.okato, o1.housenum, o1.strucnum, o1.aoguid, o3.okato, o3.offname, o3.shortname, o1.postalcode, o3.code, o1.buildnum
+        GROUP BY o1.houseguid, o1.okato, o1.housenum, o1.strucnum, o1.aoguid, o3.offname, o3.shortname, o1.postalcode, o3.code, o1.buildnum
         ORDER BY (NULLIF(regexp_replace((o1.housenum)::text, '[^0-9]'::text, ''::text, 'g'::text), ''::text))::bigint
     );
 
